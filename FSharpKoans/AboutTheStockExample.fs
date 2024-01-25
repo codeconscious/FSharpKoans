@@ -67,11 +67,11 @@ module ``about the stock example`` =
             let parsedDouble strNum = System.Double.Parse(strNum, CultureInfo.InvariantCulture)
             parsedDouble(close) - parsedDouble(opn)
 
-        let result list =
+        let largestOpenCloseDiff list =
             list
             |> List.skip 1 // The header row
             |> List.map splitCommas
             |> List.maxBy (fun line -> parsedDiff line[1] line[4])
             |> Array.item 0
 
-        AssertEquality "2012-03-13" (result stockData)
+        AssertEquality "2012-03-13" (largestOpenCloseDiff stockData)
